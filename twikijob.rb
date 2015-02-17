@@ -12,12 +12,18 @@ no_update
 # remove this to get less output when running
 verbose
 
+from_date = Time.parse('2015-02-01')
+
+puts "-> Twitter user mentions wikijob in tweet = WikiJob favourites that tweet"
 search "wikijob" do |tweet|
-  puts tweet.inspect
-  # reply "Hey #USER# nice to meet you!", tweet
+  favorite(tweet) if tweet.created_at > from_date
 end
- 
+
+puts "-> Twitter user uses @wikijob in tweet = WikiJob favourites that tweet and follows that user" 
 replies do |tweet|
-  puts tweet.inspect
-  # reply "Yes #USER#, you are very kind to say that!", tweet
+  if tweet.created_at > from_date
+    favorite tweet
+    follow tweet.user
+  end
 end 
+
