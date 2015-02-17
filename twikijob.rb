@@ -14,5 +14,10 @@ verbose
 
 search "wikijob" do |tweet|
   puts tweet.inspect
+  # reply "Hey #USER# nice to meet you!", tweet
 end
-  
+ 
+replies do |tweet|
+  puts tweet.inspect
+  # reply "Yes #USER#, you are very kind to say that!", tweet
+end 
